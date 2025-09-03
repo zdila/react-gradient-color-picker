@@ -23,7 +23,7 @@ export const useColorPicker = (
   )
   const [previousColors, setPreviousColors] = useState([])
 
-  const getGradientObject = (currentValue: string) => {
+  const getGradientObject = (currentValue?: string) => {
     if (currentValue) {
       colors = getColors(currentValue, defaultColor, defaultGradient)
     }

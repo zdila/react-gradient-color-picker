@@ -2,24 +2,41 @@
 [![Downloads][downloads-image]][downloads-url]
 [![License][license-image]][license-url]
 
-# 🚀 About this Fork
-This fork exists for one simple reason: better UX.
+# 🚀 About this fork
 
-The original version had a pretty limiting behavior — when interacting with the color picker (like dragging the saturation square, hue, opacity sliders, etc.), your mouse had to stay inside the component. If you moved outside, everything just froze until you came back.
+`@freemap/react-gradient-color-picker` is a [Freemap.sk](https://www.freemap.sk/) fork of
+[react-best-gradient-color-picker](https://github.com/hxf31891/react-gradient-color-picker)
+that bundles a set of community improvements:
 
-With this fork, that’s no longer a problem.
-Now you can drag freely, even outside the component.
+- **Drag outside the component** — dragging the saturation square, hue, opacity and gradient
+  sliders no longer freezes when the cursor leaves the picker.
+- **Mobile / touch support** — all sliders and the saturation square are now driven by
+  [Pointer Events](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events), so mouse,
+  touch and pen all work from a single, unified code path (with `touch-action: none` to avoid
+  page scrolling while dragging).
+- TypeScript typing fixes and an optional `currentValue` argument for `getGradientObject`.
 
-I also took the chance to adjust some TypeScript typings along the way.
+It merges the following upstream pull requests:
+[#128](https://github.com/hxf31891/react-gradient-color-picker/pull/128),
+[#129](https://github.com/hxf31891/react-gradient-color-picker/pull/129),
+[#130](https://github.com/hxf31891/react-gradient-color-picker/pull/130) and
+[#132](https://github.com/hxf31891/react-gradient-color-picker/pull/132).
 
-📦 How to install (select your package manager)
+### 📦 Install
+
 ```bash
-pnpm add https://github.com/Delgado-tech/react-gradient-color-picker.git
-yarn add https://github.com/Delgado-tech/react-gradient-color-picker.git
-npm install https://github.com/Delgado-tech/react-gradient-color-picker.git
+pnpm add @freemap/react-gradient-color-picker
+# or
+yarn add @freemap/react-gradient-color-picker
+# or
+npm install @freemap/react-gradient-color-picker
 ```
 
-> 💡 Note: In this fork, I migrated the project's package manager from Yarn to PNPM
+```jsx
+import ColorPicker from '@freemap/react-gradient-color-picker'
+```
+
+> 💡 The API is identical to the upstream package — only the package name changes.
 
 <br/>
 <br/>
@@ -45,11 +62,11 @@ npm install https://github.com/Delgado-tech/react-gradient-color-picker.git
 <a id="item-one"></a>
 ## Install
 ```
-npm install react-best-gradient-color-picker
+npm install @freemap/react-gradient-color-picker
 ```
 
 ```
-yarn add react-best-gradient-color-picker
+yarn add @freemap/react-gradient-color-picker
 ```
 
 <a id="item-two"></a>
@@ -79,7 +96,7 @@ See the picker in action [here](https://gradient-package-demo.web.app/)
 ## Basic Example 
 ```js
 import React from 'react'
-import ColorPicker from 'react-best-gradient-color-picker'
+import ColorPicker from '@freemap/react-gradient-color-picker'
 
 function MyApp() {
   const [color, setColor] = useState('rgba(255,255,255,1)');
@@ -144,7 +161,7 @@ function MyApp() {
 
 ```js
 import React from 'react'
-import ColorPicker, { useColorPicker } from 'react-best-gradient-color-picker'
+import ColorPicker, { useColorPicker } from '@freemap/react-gradient-color-picker'
 
 function MyApp() {
   const [color, setColor] = useState('linear-gradient(90deg, rgba(96,93,93,1) 0%, rgba(255,255,255,1) 100%)');
@@ -208,7 +225,7 @@ function MyApp() {
 
 ```js
 import React from 'react'
-import ColorPicker, { useColorPicker } from 'react-best-gradient-color-picker'
+import ColorPicker, { useColorPicker } from '@freemap/react-gradient-color-picker'
 
 function MyApp() {
   const [color, setColor] = useState('linear-gradient(90deg, rgba(96,93,93,1) 0%, rgba(255,255,255,1) 100%)');
@@ -232,7 +249,7 @@ function MyApp() {
 
 ```js
 import React from 'react'
-import ColorPicker, { useColorPicker } from 'react-best-gradient-color-picker'
+import ColorPicker, { useColorPicker } from '@freemap/react-gradient-color-picker'
 
 function MyApp() {
   const [color, setColor] = useState('linear-gradient(90deg, rgba(96,93,93,1) 0%, rgba(255,255,255,1) 100%)');
@@ -255,7 +272,7 @@ function MyApp() {
 
 ```js
 import React from 'react'
-import ColorPicker, { useColorPicker } from 'react-best-gradient-color-picker'
+import ColorPicker, { useColorPicker } from '@freemap/react-gradient-color-picker'
 
 function MyApp() {
   const [color, setColor] = useState('linear-gradient(90deg, rgba(96,93,93,1) 0%, rgba(255,255,255,1) 100%)');
@@ -280,7 +297,7 @@ function MyApp() {
 
 ```js
 import React from 'react'
-import ColorPicker from 'react-best-gradient-color-picker'
+import ColorPicker from '@freemap/react-gradient-color-picker'
 
 const customPresets = [
   'rgba(34, 164, 65, 1)',
@@ -303,7 +320,7 @@ You may also want to provide the users recently used colors in lieu of preset op
 
 ```js
 import React from 'react'
-import ColorPicker, { useColorPicker } from 'react-best-gradient-color-picker'
+import ColorPicker, { useColorPicker } from '@freemap/react-gradient-color-picker'
 
 function MyApp() {
   const [color, setColor] = useState('linear-gradient(90deg, rgba(96,93,93,1) 0%, rgba(255,255,255,1) 100%)');
@@ -322,7 +339,7 @@ You can pass custom locales via `locales` prop.
 
 ```js
 import React from 'react'
-import ColorPicker, { useColorPicker } from 'react-best-gradient-color-picker'
+import ColorPicker, { useColorPicker } from '@freemap/react-gradient-color-picker'
 
 function MyApp() {
   const customLocales = {
@@ -344,7 +361,7 @@ The picker returns the new value as a css gradient string but you may need it pa
 
 ```js
 import React from 'react'
-import ColorPicker, { useColorPicker } from 'react-best-gradient-color-picker'
+import ColorPicker, { useColorPicker } from '@freemap/react-gradient-color-picker'
 
 function MyApp() {
   const [color, setColor] = useState('linear-gradient(90deg, rgba(96,93,93,1) 0%, rgba(255,255,255,1) 100%)');
@@ -383,7 +400,7 @@ NOTE: the same can be done in reverse to only allow selection of solid colors
 
 ```js
 import React from 'react'
-import ColorPicker, { useColorPicker } from 'react-best-gradient-color-picker'
+import ColorPicker, { useColorPicker } from '@freemap/react-gradient-color-picker'
 
 function MyApp() {
   const [color, setColor] = useState('linear-gradient(90deg, rgba(96,93,93,1) 0%, rgba(255,255,255,1) 100%)');  
@@ -450,7 +467,7 @@ The state of the picker is determined by parsing the value string. You can updat
 
 ```js
 import React from 'react'
-import ColorPicker from 'react-best-gradient-color-picker'
+import ColorPicker from '@freemap/react-gradient-color-picker'
 
 function MyApp() {
   const [color, setColor] = useState('linear-gradient(90deg, rgba(96,93,93,1) 0%, rgba(255,255,255,1) 100%)');
@@ -491,7 +508,7 @@ Custom linear-gradient degrees input
 
 ```js
 import React from 'react'
-import ColorPicker from 'react-best-gradient-color-picker'
+import ColorPicker from '@freemap/react-gradient-color-picker'
 
 function MyApp() {
   const [color, setColor] = useState('linear-gradient(90deg, rgba(96,93,93,1) 0%, rgba(255,255,255,1) 100%)');
@@ -527,12 +544,12 @@ function MyApp() {
 Code released under the [MIT](https://github.com/hxf31891/react-gradient-color-picker/blob/main/LICENSE) license.
 
 [build-image]: https://img.shields.io/github/checks-status/hxf31891/react-gradient-color-picker/main?color=%23498af2
-[license-image]: https://img.shields.io/npm/l/react-best-gradient-color-picker.svg?color=%23498af2
+[license-image]: https://img.shields.io/npm/l/@freemap/react-gradient-color-picker.svg?color=%23498af2
 [license-url]: LICENSE
-[downloads-image]: http://img.shields.io/npm/dm/react-best-gradient-color-picker.svg?color=%23498af2
-[downloads-url]: http://npm-stat.com/charts.html?package=react-best-gradient-color-picker
-[npm-version-image]: https://img.shields.io/npm/v/react-best-gradient-color-picker.svg?color=%23498af2
-[npm-version-url]: https://www.npmjs.com/package/react-best-gradient-color-picker
+[downloads-image]: http://img.shields.io/npm/dm/@freemap/react-gradient-color-picker.svg?color=%23498af2
+[downloads-url]: https://www.npmjs.com/package/@freemap/react-gradient-color-picker
+[npm-version-image]: https://img.shields.io/npm/v/@freemap/react-gradient-color-picker.svg?color=%23498af2
+[npm-version-url]: https://www.npmjs.com/package/@freemap/react-gradient-color-picker
 
 <a id="item-fourteen"></a>
 ## Acknowledgments

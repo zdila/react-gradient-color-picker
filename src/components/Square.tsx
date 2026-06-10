@@ -40,12 +40,12 @@ const Square = () => {
       stopDragging()
     }
 
-    window.addEventListener('mouseup', handleUp)
-    window.addEventListener('mousemove', handleMove)
+    window.addEventListener('pointerup', handleUp)
+    window.addEventListener('pointermove', handleMove)
 
     return () => {
-      window.removeEventListener('mouseup', handleUp)
-      window.removeEventListener('mousemove', handleMove)
+      window.removeEventListener('pointerup', handleUp)
+      window.removeEventListener('pointermove', handleMove)
     }
   }, [dragging])
 
@@ -106,21 +106,19 @@ const Square = () => {
       id={`rbgcp-square-wrapper${pickerIdSuffix}`}
     >
       <div
-        onMouseUp={stopDragging}
-        onTouchEnd={stopDragging}
-        onMouseDown={handleCanvasDown}
-        onTouchStart={handleCanvasDown}
+        onPointerDown={handleCanvasDown}
         id={`rbgcp-square${pickerIdSuffix}`}
         ref={squareRef}
-        style={{ position: 'relative', cursor: 'ew-cross' }}
+        style={{ position: 'relative', cursor: 'ew-cross', touchAction: 'none' }}
       >
         <div
           style={{
             ...defaultStyles.rbgcpHandle,
             transform: `translate(${dragPos?.x ?? 0}px, ${dragPos?.y ?? 0}px)`,
+            touchAction: 'none',
             ...(dragging ? { transition: '' } : {}),
           }}
-          onMouseDown={handleMouseDown}
+          onPointerDown={handleMouseDown}
           id={`rbgcp-square-handle${pickerIdSuffix}`}
         />
         <div

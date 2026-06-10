@@ -70,12 +70,12 @@ const AdvBar = ({
       stopDragging()
     }
 
-    window.addEventListener('mouseup', handleUp)
-    window.addEventListener('mousemove', handleMove)
+    window.addEventListener('pointerup', handleUp)
+    window.addEventListener('pointermove', handleMove)
 
     return () => {
-      window.removeEventListener('mouseup', handleUp)
-      window.removeEventListener('mousemove', handleMove)
+      window.removeEventListener('pointerup', handleUp)
+      window.removeEventListener('pointermove', handleMove)
     }
   }, [dragging])
 
@@ -84,14 +84,19 @@ const AdvBar = ({
       <div
         ref={barRef}
         // className="rbgcp-advanced-bar-wrap"
-        style={{ cursor: 'resize', position: 'relative' }}
+        style={{ cursor: 'resize', position: 'relative', touchAction: 'none' }}
         id={`rbgcp-advanced-bar-${label}-wrapper${pickerIdSuffix}`}
       >
         <div
-          style={{ left, top: handleTop, ...defaultStyles.rbgcpHandle }}
+          style={{
+            left,
+            top: handleTop,
+            touchAction: 'none',
+            ...defaultStyles.rbgcpHandle,
+          }}
           id={`rbgcp-advanced-bar-${label}-handle${pickerIdSuffix}`}
           // className="rbgcp-advanced-bar-handle"
-          onMouseDown={handleDown}
+          onPointerDown={handleDown}
           role="button"
           tabIndex={0}
         />
@@ -111,7 +116,6 @@ const AdvBar = ({
           }}
           id={`rbgcp-advanced-bar-${label}-label${pickerIdSuffix}`}
           // className="rbgcp-advanced-bar-label"
-          onMouseMove={(e) => handleMove(e)}
           onClick={(e) => handleClick(e)}
           tabIndex={0}
           role="button"

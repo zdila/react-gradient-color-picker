@@ -55,18 +55,20 @@ export const Handle = ({
       // tabIndex={0}
       // onBlur={handleBlur}
       // onFocus={handleFocus}
-      onMouseDown={(e) => handleDown(e)}
+      onPointerDown={(e) => handleDown(e)}
       id={`rbgcp-gradient-handle-${i}${pickerIdSuffix}`}
       // className="rbgcp-gradient-handle-wrap"
       style={{
         ...defaultStyles.rbgcpGradientHandleWrap,
         left: (left ?? 0) * leftMultiplyer,
+        touchAction: 'none',
       }}
     >
       <div
         // className="rbgcp-gradient-handle"
         style={{
           ...defaultStyles.rbgcpGradientHandle,
+          touchAction: 'none',
           ...(isSelected
             ? {
                 boxShadow: '0px 0px 5px 1px rgba(86, 140, 245,.95)',
@@ -149,13 +151,13 @@ const GradientBar = () => {
   }
 
   useEffect(() => {
-    window.addEventListener('mouseup', handleUp)
-    window.addEventListener('mousemove', handleMove)
+    window.addEventListener('pointerup', handleUp)
+    window.addEventListener('pointermove', handleMove)
     // window?.addEventListener('keydown', handleKeyboard)
 
     return () => {
-      window.removeEventListener('mouseup', handleUp)
-      window.removeEventListener('mousemove', handleMove)
+      window.removeEventListener('pointerup', handleUp)
+      window.removeEventListener('pointermove', handleMove)
       // window?.removeEventListener('keydown', handleKeyboard)
     }
   }, [dragging])
@@ -177,8 +179,9 @@ const GradientBar = () => {
           borderRadius: 10,
           width: squareWidth,
           backgroundImage: force90degLinear(value),
+          touchAction: 'none',
         }}
-        onMouseDown={(e) => handleDown(e)}
+        onPointerDown={(e) => handleDown(e)}
         ref={barRef}
         id={`rbgcp-gradient-bar-canvas${pickerIdSuffix}`}
         // className="rbgcp-gradient-bar-canvas"

@@ -49,12 +49,12 @@ const Hue = () => {
       stopDragging()
     }
 
-    window.addEventListener('mouseup', handleUp)
-    window.addEventListener('mousemove', handleMove)
+    window.addEventListener('pointerup', handleUp)
+    window.addEventListener('pointermove', handleMove)
 
     return () => {
-      window.removeEventListener('mouseup', handleUp)
-      window.removeEventListener('mousemove', handleMove)
+      window.removeEventListener('pointerup', handleUp)
+      window.removeEventListener('pointermove', handleMove)
     }
   }, [dragging])
 
@@ -66,9 +66,10 @@ const Hue = () => {
         marginBottom: 4,
         cursor: 'ew-resize',
         position: 'relative',
+        touchAction: 'none',
       }}
       ref={hueRef}
-      onMouseDown={handleDown}
+      onPointerDown={handleDown}
       id={`rbgcp-hue-wrap${pickerIdSuffix}`}
       // className="rbgcp-hue-wrap"
     >

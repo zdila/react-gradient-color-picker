@@ -30,7 +30,6 @@ const Opacity = () => {
   const handleOpacity = (x: number) => {
     if (opacityRef.current) {
       const newO = getHandleValue(x, opacityRef.current, barSize) / 100
-      console.log(newO)
       const newColor = `rgba(${r}, ${g}, ${b}, ${newO})`
       handleChange(newColor)
     }
@@ -55,24 +54,25 @@ const Opacity = () => {
       stopDragging()
     }
 
-    window.addEventListener('mouseup', handleUp)
-    window.addEventListener('mousemove', handleMove)
+    window.addEventListener('pointerup', handleUp)
+    window.addEventListener('pointermove', handleMove)
 
     return () => {
-      window.removeEventListener('mouseup', handleUp)
-      window.removeEventListener('mousemove', handleMove)
+      window.removeEventListener('pointerup', handleUp)
+      window.removeEventListener('pointermove', handleMove)
     }
   }, [dragging])
 
   return (
     <div
-      onMouseDown={handleDown}
+      onPointerDown={handleDown}
       style={{
         height: 14,
         marginTop: 17,
         marginBottom: 4,
         cursor: 'ew-resize',
         position: 'relative',
+        touchAction: 'none',
       }}
       id={`rbgcp-opacity-wrapper${pickerIdSuffix}`}
       // className="rbgcp-opacity-wrap"

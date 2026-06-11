@@ -1,14 +1,17 @@
 import tc from 'tinycolor2'
 import { useState, useEffect } from 'react'
 import { rgb2cmyk } from '../utils/converters.js'
-import { ColorsProps, GradientProps, Config } from '../shared/types.js'
+import { ColorsProps, GradientProps, PassedConfig } from '../shared/types.js'
 import { isUpperCase, getDetails, getColorObj } from '../utils/utils.js'
 import { low, high, getColors, formatInputValues } from '../utils/formatters.js'
 
 export const useColorPicker = (
   value: string,
   onChange: (arg0: string) => void,
-  config?: Config
+  // Only defaultColor / defaultGradient are read here, so accept the partial
+  // PassedConfig instead of the full Config (barSize/crossSize were needlessly
+  // required — issue #127).
+  config?: PassedConfig
 ) => {
   const {
     defaultColor = 'rgba(175, 51, 242, 1)',

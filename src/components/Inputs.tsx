@@ -22,17 +22,33 @@ const Input = ({
   pickerIdSuffix: string
   callback: (arg0: number) => void
 }) => {
-  const [temp, setTemp] = useState(value)
+  // Keep the raw text the user is typing so partial/over-max entries can be
+  // edited freely. Clamping happens only for the value handed to the callback,
+  // and the field is re-synced from the (round-tripped) value when not focused.
+  // Otherwise clamping fights every keystroke and you can't clear the field
+  // (issue #126).
+  const [temp, setTemp] = useState(String(value))
+  const [focused, setFocused] = useState(false)
   const width = hideOpacity ? '25%' : '20%'
 
   useEffect(() => {
-    setTemp(value)
-  }, [value])
+    if (!focused) {
+      setTemp(String(value))
+    }
+  }, [value, focused])
 
   const onChange = (e: any) => {
-    const newVal = formatInputValues(parseFloat(e.target.value), 0, max)
-    setTemp(newVal)
-    callback(newVal)
+    const raw = e.target.value
+    setTemp(raw)
+    const parsed = parseFloat(raw)
+    if (!isNaN(parsed)) {
+      callback(formatInputValues(parsed, 0, max))
+    }
+  }
+
+  const onBlur = () => {
+    setFocused(false)
+    setTemp(String(value))
   }
 
   return (
@@ -42,7 +58,10 @@ const Input = ({
     >
       <input
         value={temp}
+        inputMode="decimal"
         onChange={(e) => onChange(e)}
+        onFocus={() => setFocused(true)}
+        onBlur={onBlur}
         style={{ ...defaultStyles.rbgcpInput }}
         id={`rbgcp-${label}-input${pickerIdSuffix}`}
         // className="rbgcp-input"

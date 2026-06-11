@@ -230,6 +230,20 @@ export const gradientParser = (input = '') => {
     }
 
     const ast0 = ast[0]
+
+    // Color stops without an explicit position would otherwise get a NaN
+    // `left` (parseInt(undefined)) and render as "NaN%". Fall back to the CSS
+    // default of distributing the missing stops evenly across 0–100%.
+    if (ast0?.colorStops?.length) {
+      const stops = ast0.colorStops
+      const lastIndex = stops.length - 1
+      stops.forEach((c: any, i: number) => {
+        if (isNaN(c.left)) {
+          c.left = lastIndex === 0 ? 0 : Math.round((i / lastIndex) * 100)
+        }
+      })
+    }
+
     const checkSelected = ast0?.colorStops?.filter((c: any) =>
       isUpperCase(c.value)
     ).length

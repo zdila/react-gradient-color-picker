@@ -19,6 +19,7 @@ export const Handle = ({
   const {
     colors,
     squareWidth,
+    deletePoint,
     selectedColor,
     defaultStyles,
     pickerIdSuffix,
@@ -56,6 +57,7 @@ export const Handle = ({
       // onBlur={handleBlur}
       // onFocus={handleFocus}
       onPointerDown={(e) => handleDown(e)}
+      onDoubleClick={deletePoint}
       id={`rbgcp-gradient-handle-${i}${pickerIdSuffix}`}
       // className="rbgcp-gradient-handle-wrap"
       style={{

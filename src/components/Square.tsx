@@ -58,14 +58,17 @@ const Square = () => {
   const handleColor = () => {
     const { x, y } = dragPos
 
-    if (x && y) {
-      const x1 = Math.min(x + crossSize / 2.2, squareWidth)
-      const y1 = Math.min(y + crossSize / 2.2, squareHeight)
-      const newS = (x1 / squareWidth) * 100
-      const newY = 100 - (y1 / squareHeight) * 100
-      const updated = tinycolor(`hsva(${hc?.h}, ${newS}%, ${newY}%, ${hc?.a})`)
-      handleChange(updated.toRgbString())
-    }
+    if (x == null || y == null || isNaN(x) || isNaN(y)) return
+
+    // Map the handle centre to the full [0, squareWidth] / [0, squareHeight]
+    // range so the corners are reachable (e.g. S=0, V=100 => pure white).
+    // crossSize / 2 keeps this consistent with computeSquareXY (the inverse).
+    const x1 = Math.max(0, Math.min(x + crossSize / 2, squareWidth))
+    const y1 = Math.max(0, Math.min(y + crossSize / 2, squareHeight))
+    const newS = (x1 / squareWidth) * 100
+    const newY = 100 - (y1 / squareHeight) * 100
+    const updated = tinycolor(`hsva(${hc?.h}, ${newS}%, ${newY}%, ${hc?.a})`)
+    handleChange(updated.toRgbString())
   }
 
   const setComputedDragPos = (e: any) => {

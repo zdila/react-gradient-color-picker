@@ -24,15 +24,25 @@ export const useColorPicker = (
   const [previousColors, setPreviousColors] = useState([])
 
   const getGradientObject = (currentValue?: string) => {
+    // When a currentValue is supplied, recompute the gradient details from
+    // it too — otherwise isGradient/gradientType/degrees stay stale from the
+    // initial `value` and the returned object describes the wrong gradient.
+    let activeIsGradient = isGradient
+    let activeGradientType = gradientType
+    let activeDegreeStr = degreeStr
     if (currentValue) {
       colors = getColors(currentValue, defaultColor, defaultGradient)
+      const details = getDetails(currentValue)
+      activeIsGradient = details.isGradient
+      activeGradientType = details.gradientType
+      activeDegreeStr = details.degreeStr
     }
     if (value) {
-      if (isGradient) {
+      if (activeIsGradient) {
         return {
           isGradient: true,
-          gradientType: gradientType,
-          degrees: degreeStr,
+          gradientType: activeGradientType,
+          degrees: activeDegreeStr,
           colors: colors?.map((c: ColorsProps) => ({
             ...c,
             value: c.value?.toLowerCase(),

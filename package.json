@@ -1,7 +1,7 @@
 {
-  "name": "@freemap/react-gradient-color-picker",
+  "name": "@zdila/react-gradient-color-picker",
   "version": "3.1.0",
-  "description": "An easy to use color/gradient picker for React.js (Freemap fork: pointer-event drag support, mobile/touch support, and assorted fixes)",
+  "description": "An easy to use color/gradient picker for React.js (fork with pointer-event drag support, mobile/touch support, and assorted fixes)",
   "type": "module",
   "sideEffects": [
     "*.css"
@@ -33,7 +33,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FreemapSlovakia/react-gradient-color-picker.git"
+    "url": "git+https://github.com/zdila/react-gradient-color-picker.git"
   },
   "keywords": [
     "gradient",
@@ -86,9 +86,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/FreemapSlovakia/react-gradient-color-picker/issues"
+    "url": "https://github.com/zdila/react-gradient-color-picker/issues"
   },
-  "homepage": "https://github.com/FreemapSlovakia/react-gradient-color-picker#readme",
+  "homepage": "https://github.com/zdila/react-gradient-color-picker#readme",
   "publishConfig": {
     "access": "public"
   }

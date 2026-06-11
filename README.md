@@ -4,7 +4,7 @@
 
 # 🚀 About this fork
 
-`@freemap/react-gradient-color-picker` is a [Freemap.sk](https://www.freemap.sk/) fork of
+`@zdila/react-gradient-color-picker` is a maintained fork of
 [react-best-gradient-color-picker](https://github.com/hxf31891/react-gradient-color-picker)
 that bundles a set of community improvements:
 
@@ -25,15 +25,15 @@ It merges the following upstream pull requests:
 ### 📦 Install
 
 ```bash
-pnpm add @freemap/react-gradient-color-picker
+pnpm add @zdila/react-gradient-color-picker
 # or
-yarn add @freemap/react-gradient-color-picker
+yarn add @zdila/react-gradient-color-picker
 # or
-npm install @freemap/react-gradient-color-picker
+npm install @zdila/react-gradient-color-picker
 ```
 
 ```jsx
-import ColorPicker from '@freemap/react-gradient-color-picker'
+import ColorPicker from '@zdila/react-gradient-color-picker'
 ```
 
 > 💡 The API is identical to the upstream package — only the package name changes.
@@ -62,11 +62,11 @@ import ColorPicker from '@freemap/react-gradient-color-picker'
 <a id="item-one"></a>
 ## Install
 ```
-npm install @freemap/react-gradient-color-picker
+npm install @zdila/react-gradient-color-picker
 ```
 
 ```
-yarn add @freemap/react-gradient-color-picker
+yarn add @zdila/react-gradient-color-picker
 ```
 
 <a id="item-two"></a>
@@ -96,7 +96,7 @@ See the picker in action [here](https://gradient-package-demo.web.app/)
 ## Basic Example 
 ```js
 import React from 'react'
-import ColorPicker from '@freemap/react-gradient-color-picker'
+import ColorPicker from '@zdila/react-gradient-color-picker'
 
 function MyApp() {
   const [color, setColor] = useState('rgba(255,255,255,1)');
@@ -161,7 +161,7 @@ function MyApp() {
 
 ```js
 import React from 'react'
-import ColorPicker, { useColorPicker } from '@freemap/react-gradient-color-picker'
+import ColorPicker, { useColorPicker } from '@zdila/react-gradient-color-picker'
 
 function MyApp() {
   const [color, setColor] = useState('linear-gradient(90deg, rgba(96,93,93,1) 0%, rgba(255,255,255,1) 100%)');
@@ -225,7 +225,7 @@ function MyApp() {
 
 ```js
 import React from 'react'
-import ColorPicker, { useColorPicker } from '@freemap/react-gradient-color-picker'
+import ColorPicker, { useColorPicker } from '@zdila/react-gradient-color-picker'
 
 function MyApp() {
   const [color, setColor] = useState('linear-gradient(90deg, rgba(96,93,93,1) 0%, rgba(255,255,255,1) 100%)');
@@ -249,7 +249,7 @@ function MyApp() {
 
 ```js
 import React from 'react'
-import ColorPicker, { useColorPicker } from '@freemap/react-gradient-color-picker'
+import ColorPicker, { useColorPicker } from '@zdila/react-gradient-color-picker'
 
 function MyApp() {
   const [color, setColor] = useState('linear-gradient(90deg, rgba(96,93,93,1) 0%, rgba(255,255,255,1) 100%)');
@@ -272,7 +272,7 @@ function MyApp() {
 
 ```js
 import React from 'react'
-import ColorPicker, { useColorPicker } from '@freemap/react-gradient-color-picker'
+import ColorPicker, { useColorPicker } from '@zdila/react-gradient-color-picker'
 
 function MyApp() {
   const [color, setColor] = useState('linear-gradient(90deg, rgba(96,93,93,1) 0%, rgba(255,255,255,1) 100%)');
@@ -297,7 +297,7 @@ function MyApp() {
 
 ```js
 import React from 'react'
-import ColorPicker from '@freemap/react-gradient-color-picker'
+import ColorPicker from '@zdila/react-gradient-color-picker'
 
 const customPresets = [
   'rgba(34, 164, 65, 1)',
@@ -320,7 +320,7 @@ You may also want to provide the users recently used colors in lieu of preset op
 
 ```js
 import React from 'react'
-import ColorPicker, { useColorPicker } from '@freemap/react-gradient-color-picker'
+import ColorPicker, { useColorPicker } from '@zdila/react-gradient-color-picker'
 
 function MyApp() {
   const [color, setColor] = useState('linear-gradient(90deg, rgba(96,93,93,1) 0%, rgba(255,255,255,1) 100%)');
@@ -339,7 +339,7 @@ You can pass custom locales via `locales` prop.
 
 ```js
 import React from 'react'
-import ColorPicker, { useColorPicker } from '@freemap/react-gradient-color-picker'
+import ColorPicker, { useColorPicker } from '@zdila/react-gradient-color-picker'
 
 function MyApp() {
   const customLocales = {
@@ -361,7 +361,7 @@ The picker returns the new value as a css gradient string but you may need it pa
 
 ```js
 import React from 'react'
-import ColorPicker, { useColorPicker } from '@freemap/react-gradient-color-picker'
+import ColorPicker, { useColorPicker } from '@zdila/react-gradient-color-picker'
 
 function MyApp() {
   const [color, setColor] = useState('linear-gradient(90deg, rgba(96,93,93,1) 0%, rgba(255,255,255,1) 100%)');
@@ -400,7 +400,7 @@ NOTE: the same can be done in reverse to only allow selection of solid colors
 
 ```js
 import React from 'react'
-import ColorPicker, { useColorPicker } from '@freemap/react-gradient-color-picker'
+import ColorPicker, { useColorPicker } from '@zdila/react-gradient-color-picker'
 
 function MyApp() {
   const [color, setColor] = useState('linear-gradient(90deg, rgba(96,93,93,1) 0%, rgba(255,255,255,1) 100%)');  
@@ -467,7 +467,7 @@ The state of the picker is determined by parsing the value string. You can updat
 
 ```js
 import React from 'react'
-import ColorPicker from '@freemap/react-gradient-color-picker'
+import ColorPicker from '@zdila/react-gradient-color-picker'
 
 function MyApp() {
   const [color, setColor] = useState('linear-gradient(90deg, rgba(96,93,93,1) 0%, rgba(255,255,255,1) 100%)');
@@ -508,7 +508,7 @@ Custom linear-gradient degrees input
 
 ```js
 import React from 'react'
-import ColorPicker from '@freemap/react-gradient-color-picker'
+import ColorPicker from '@zdila/react-gradient-color-picker'
 
 function MyApp() {
   const [color, setColor] = useState('linear-gradient(90deg, rgba(96,93,93,1) 0%, rgba(255,255,255,1) 100%)');
@@ -544,12 +544,12 @@ function MyApp() {
 Code released under the [MIT](https://github.com/hxf31891/react-gradient-color-picker/blob/main/LICENSE) license.
 
 [build-image]: https://img.shields.io/github/checks-status/hxf31891/react-gradient-color-picker/main?color=%23498af2
-[license-image]: https://img.shields.io/npm/l/@freemap/react-gradient-color-picker.svg?color=%23498af2
+[license-image]: https://img.shields.io/npm/l/@zdila/react-gradient-color-picker.svg?color=%23498af2
 [license-url]: LICENSE
-[downloads-image]: http://img.shields.io/npm/dm/@freemap/react-gradient-color-picker.svg?color=%23498af2
-[downloads-url]: https://www.npmjs.com/package/@freemap/react-gradient-color-picker
-[npm-version-image]: https://img.shields.io/npm/v/@freemap/react-gradient-color-picker.svg?color=%23498af2
-[npm-version-url]: https://www.npmjs.com/package/@freemap/react-gradient-color-picker
+[downloads-image]: http://img.shields.io/npm/dm/@zdila/react-gradient-color-picker.svg?color=%23498af2
+[downloads-url]: https://www.npmjs.com/package/@zdila/react-gradient-color-picker
+[npm-version-image]: https://img.shields.io/npm/v/@zdila/react-gradient-color-picker.svg?color=%23498af2
+[npm-version-url]: https://www.npmjs.com/package/@zdila/react-gradient-color-picker
 
 <a id="item-fourteen"></a>
 ## Acknowledgments

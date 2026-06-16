@@ -3,6 +3,7 @@ import React, {
   useContext,
   ReactNode,
   useEffect,
+  useRef,
   useState,
 } from 'react'
 import { GradientProps, Styles, PassedConfig, Config } from './shared/types.js'
@@ -16,6 +17,8 @@ export default function PickerContextWrapper({
   value,
   children,
   onChange,
+  onDragStart,
+  onDragEnd,
   isDarkMode,
   squareWidth,
   hideOpacity,
@@ -54,6 +57,40 @@ export default function PickerContextWrapper({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentColor])
+
+  // A pointer drag on any of the sliders/squares emits a rapid stream of
+  // onChange calls. `startInteraction` (called from each control's pointer-down
+  // handler) fires `onDragStart` once at the gesture's start; a single window
+  // `pointerup` listener fires `onDragEnd` once at its end. Consumers can use
+  // this to defer expensive per-gesture side effects (e.g. URL/history writes)
+  // until the drag completes.
+  const interactingRef = useRef(false)
+
+  useEffect(() => {
+    if (!onDragStart && !onDragEnd) {
+      return
+    }
+
+    const handleUp = () => {
+      if (interactingRef.current) {
+        interactingRef.current = false
+        onDragEnd?.()
+      }
+    }
+
+    window.addEventListener('pointerup', handleUp)
+
+    return () => {
+      window.removeEventListener('pointerup', handleUp)
+    }
+  }, [onDragStart, onDragEnd])
+
+  const startInteraction = () => {
+    if (!interactingRef.current) {
+      interactingRef.current = true
+      onDragStart?.()
+    }
+  }
 
   const createGradientStr = (newColors: GradientProps[]) => {
     const sorted = newColors.sort(
@@ -126,6 +163,7 @@ export default function PickerContextWrapper({
     handleGradient,
     pickerIdSuffix,
     createGradientStr,
+    startInteraction,
   }
 
   return (
@@ -152,6 +190,8 @@ type PCWProps = {
   squareHeight: number
   hideOpacity: boolean
   onChange: (arg0: string) => void
+  onDragStart?: () => void
+  onDragEnd?: () => void
   defaultStyles: Styles
   isDarkMode: boolean
   pickerIdSuffix: string
@@ -182,6 +222,7 @@ export type PickerContextProps = {
   setHc: (arg0: any) => void
   handleGradient: (arg0: string, arg1?: number) => void
   createGradientStr: (arg0: GradientProps[]) => void
+  startInteraction: () => void
   defaultStyles: Styles
   previous: { color?: string; gradient?: string }
   isDarkMode: boolean

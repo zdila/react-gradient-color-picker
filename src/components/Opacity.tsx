@@ -11,6 +11,7 @@ const Opacity = () => {
     handleChange,
     defaultStyles,
     pickerIdSuffix,
+    startInteraction,
   } = usePicker()
   const [dragging, setDragging] = useState(false)
   const { r, g, b } = hc
@@ -24,6 +25,7 @@ const Opacity = () => {
   }
 
   const handleDown = () => {
+    startInteraction()
     setDragging(true)
   }
 

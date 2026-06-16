@@ -24,6 +24,7 @@ export const Handle = ({
     defaultStyles,
     pickerIdSuffix,
     createGradientStr,
+    startInteraction,
   } = usePicker()
   const isSelected = selectedColor === i
   const leftMultiplyer = (squareWidth - 18) / 100
@@ -38,6 +39,7 @@ export const Handle = ({
 
   const handleDown = (e: any) => {
     e.stopPropagation()
+    startInteraction()
     setSelectedColor(i)
     setDragging(true)
   }
@@ -106,6 +108,7 @@ const GradientBar = () => {
     handleGradient,
     pickerIdSuffix,
     createGradientStr,
+    startInteraction,
   } = usePicker()
   const { barSize } = config
   const [dragging, setDragging] = useState(false)
@@ -135,6 +138,7 @@ const GradientBar = () => {
 
   const handleDown = (e: any) => {
     if (dragging) return
+    startInteraction()
     addPoint(e.clientX)
     setDragging(true)
   }

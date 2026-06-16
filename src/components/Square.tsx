@@ -13,6 +13,7 @@ const Square = () => {
     handleChange,
     defaultStyles,
     pickerIdSuffix,
+    startInteraction,
   } = usePicker()
   const { crossSize } = config
   const [dragging, setDragging] = useState(false)
@@ -95,10 +96,12 @@ const Square = () => {
   }
 
   const handleMouseDown = () => {
+    startInteraction()
     setDragging(true)
   }
 
   const handleCanvasDown = (e: any) => {
+    startInteraction()
     setDragging(true)
     setComputedDragPos(e)
   }

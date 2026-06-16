@@ -30,6 +30,7 @@ const AdvBar = ({
   pickerIdSuffix: string
   callback: (arg0: number) => void
 }) => {
+  const { startInteraction } = usePicker()
   const { barSize } = config
   const [dragging, setDragging] = useState<boolean>(false)
   const [handleTop, setHandleTop] = useState<number>(2)
@@ -62,6 +63,7 @@ const AdvBar = ({
   }
 
   const handleDown = () => {
+    startInteraction()
     setDragging(true)
   }
 

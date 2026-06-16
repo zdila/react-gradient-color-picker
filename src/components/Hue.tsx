@@ -6,8 +6,15 @@ import tinycolor from 'tinycolor2'
 
 const Hue = () => {
   const barRef = useRef<HTMLCanvasElement>(null)
-  const { config, handleChange, squareWidth, hc, setHc, pickerIdSuffix } =
-    usePicker()
+  const {
+    config,
+    handleChange,
+    squareWidth,
+    hc,
+    setHc,
+    pickerIdSuffix,
+    startInteraction,
+  } = usePicker()
   const [dragging, setDragging] = useState(false)
   const { barSize } = config
   usePaintHue(barRef, squareWidth)
@@ -19,6 +26,7 @@ const Hue = () => {
   }
 
   const handleDown = () => {
+    startInteraction()
     setDragging(true)
   }
 

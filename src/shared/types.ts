@@ -2,6 +2,10 @@ export type ColorPickerProps = {
   idSuffix?: string
   value?: string
   onChange: (value: string) => void
+  /** Fires once when a pointer drag on a slider/square begins. */
+  onDragStart?: () => void
+  /** Fires once when a pointer drag on a slider/square ends. */
+  onDragEnd?: () => void
   hideControls?: boolean
   hideInputs?: boolean
   hideOpacity?: boolean

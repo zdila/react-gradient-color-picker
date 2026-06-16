@@ -14,6 +14,10 @@ that bundles a set of community improvements:
   [Pointer Events](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events), so mouse,
   touch and pen all work from a single, unified code path (with `touch-action: none` to avoid
   page scrolling while dragging).
+- **Drag lifecycle callbacks** — optional `onDragStart` / `onDragEnd` props fire once at the
+  start and end of a pointer drag, so consumers can defer per-gesture side effects (e.g.
+  writing browser history) until the drag completes instead of running them on every
+  `onChange` frame.
 - TypeScript typing fixes and an optional `currentValue` argument for `getGradientObject`.
 
 It merges the following upstream pull requests:
@@ -36,7 +40,8 @@ npm install @zdila/react-gradient-color-picker
 import ColorPicker from '@zdila/react-gradient-color-picker'
 ```
 
-> 💡 The API is identical to the upstream package — only the package name changes.
+> 💡 The API is a superset of the upstream package — existing props are unchanged; this
+> fork only adds the optional `onDragStart` / `onDragEnd` callbacks.
 
 <br/>
 <br/>
@@ -137,6 +142,8 @@ function MyApp() {
 | disableLightMode    | `boolean`    | false                    | (optional) force the component to only use the dark mode styles          |
 | className           | `string`     | ''                       | (optional) a CSS class for the picker parent (see styling for more options)|
 | idSuffix            | `string`     | ''                       | (optional) Adds a suffix to all the ids of the picker elements, useful when using multiple pickers on the same page|
+| onDragStart         | `function`   | `undefined`              | (optional) called once when a pointer drag on a slider/square begins                      |
+| onDragEnd           | `function`   | `undefined`              | (optional) called once when a pointer drag on a slider/square ends                        |
 
 <a id="item-five"></a>
 ### API

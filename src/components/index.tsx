@@ -11,6 +11,8 @@ export function ColorPicker({
   idSuffix,
   value = 'rgba(175, 51, 242, 1)',
   onChange,
+  onDragStart,
+  onDragEnd,
   hideControls = false,
   hideInputs = false,
   hideOpacity = false,
@@ -65,6 +67,8 @@ export function ColorPicker({
       <PickerContextWrapper
         value={safeValue}
         onChange={onChange}
+        onDragStart={onDragStart}
+        onDragEnd={onDragEnd}
         squareWidth={width}
         passedConfig={config}
         squareHeight={height}

@@ -30,6 +30,12 @@ export type ColorPickerProps = {
   disableLightMode?: boolean
   hidePickerSquare?: boolean
   showHexAlpha?: boolean
+  /** Lower bound the gradient stop input maps to (0% -> stopMin). */
+  stopMin?: number
+  /** Upper bound the gradient stop input maps to (100% -> stopMax). */
+  stopMax?: number
+  /** Optional unit rendered after the gradient stop value. */
+  stopUnit?: string
   config?: PassedConfig
 }
 

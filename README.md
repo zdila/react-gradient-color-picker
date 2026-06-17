@@ -136,6 +136,9 @@ function MyApp() {
 | hideGradientControls| `boolean`    | `false`                 | (optional) hide the all gradient controls (the bar that appears below top controls when in gradient mode)|
 | hidePickerSquare    | `boolean`    | `false`                 | (optional) hide the main picker color swatch (the square that appears at the top)|
 | showHexAlpha        | `boolean`    | `false`                 | (optional) add alpha (AA) channel to hex value which represents the opacity of the color|
+| stopMin             | `number`     | `0`                     | (optional) value the gradient stop input shows at 0% (remaps the stop input range)|
+| stopMax             | `number`     | `100`                   | (optional) value the gradient stop input shows at 100% (remaps the stop input range)|
+| stopUnit            | `string`     | `undefined`             | (optional) unit rendered after the gradient stop value (e.g. `'m'`, `'°'`)|
 | presets             | `array`      | ['rgba(0,0,0,1)', ...]  | (optional) pass in custom preset options ['rgba()', 'rgba()', ..]         |
 | locales             | `object`     | { CONTROLS: { SOLID: 'Solid', GRADIENT: 'Gradient' }}  | (optional) pass in custom locales |
 | disableDarkMode     | `boolean`    | false                    | (optional) disable automatic dark mode style adjustments                 |

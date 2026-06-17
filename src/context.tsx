@@ -27,6 +27,9 @@ export default function PickerContextWrapper({
   passedConfig,
   defaultStyles,
   pickerIdSuffix,
+  stopMin,
+  stopMax,
+  stopUnit,
 }: PCWProps) {
   const config: Config = {
     barSize: passedConfig.barSize ?? defaultConfig.barSize,
@@ -164,6 +167,9 @@ export default function PickerContextWrapper({
     pickerIdSuffix,
     createGradientStr,
     startInteraction,
+    stopMin,
+    stopMax,
+    stopUnit,
   }
 
   return (
@@ -197,6 +203,9 @@ type PCWProps = {
   pickerIdSuffix: string
   showHexAlpha: boolean
   passedConfig: PassedConfig
+  stopMin: number
+  stopMax: number
+  stopUnit?: string
 }
 
 export type PickerContextProps = {
@@ -228,6 +237,9 @@ export type PickerContextProps = {
   isDarkMode: boolean
   pickerIdSuffix: string
   showHexAlpha: boolean
+  stopMin: number
+  stopMax: number
+  stopUnit?: string
 }
 
 const defaultConfig = {

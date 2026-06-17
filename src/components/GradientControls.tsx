@@ -70,10 +70,22 @@ const StopPicker = () => {
     defaultStyles,
     handleGradient,
     pickerIdSuffix,
+    stopMin,
+    stopMax,
+    stopUnit,
   } = usePicker()
 
+  const range = stopMax - stopMin
+
+  // The stop position is stored internally as an integer percent (0-100). The
+  // input displays it remapped onto [stopMin, stopMax] and parses typed values
+  // back into a percent.
+  const displayValue = Math.round(stopMin + (currentLeft / 100) * range)
+
   const handleMove = (newVal: string) => {
-    handleGradient(currentColor, formatInputValues(parseInt(newVal), 0, 100))
+    const clamped = formatInputValues(parseFloat(newVal), stopMin, stopMax)
+    const pct = range === 0 ? 0 : ((clamped - stopMin) / range) * 100
+    handleGradient(currentColor, pct)
   }
 
   return (
@@ -89,15 +101,31 @@ const StopPicker = () => {
     >
       <StopIcon />
       <input
-        value={currentLeft}
+        value={displayValue}
         id={`rbgcp-stop-input${pickerIdSuffix}`}
         onChange={(e) => handleMove(e.target.value)}
         style={{
           ...defaultStyles.rbgcpControlInput,
           ...defaultStyles.rbgcpStopInput,
+          ...(stopUnit ? { paddingLeft: 0, paddingRight: 0 } : {}),
         }}
         // className="rbgcp-control-input rbgcp-stop-input"
       />
+      {stopUnit && (
+        <span
+          style={{
+            ...defaultStyles.rbgcpControlInput,
+            width: 'auto',
+            height: 24,
+            display: 'flex',
+            alignItems: 'center',
+            paddingLeft: 0,
+            paddingRight: 2,
+          }}
+        >
+          {stopUnit}
+        </span>
+      )}
     </div>
   )
 }

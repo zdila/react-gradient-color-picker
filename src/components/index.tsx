@@ -37,6 +37,9 @@ export function ColorPicker({
   disableLightMode = false,
   hidePickerSquare = false,
   showHexAlpha = false,
+  stopMin = 0,
+  stopMax = 100,
+  stopUnit,
   config = {},
 }: ColorPickerProps) {
   const safeValue = objectToString(value)
@@ -75,6 +78,9 @@ export function ColorPicker({
         isDarkMode={isDarkMode}
         hideOpacity={hideOpacity}
         showHexAlpha={showHexAlpha}
+        stopMin={stopMin}
+        stopMax={stopMax}
+        stopUnit={stopUnit}
         defaultStyles={defaultStyles}
         pickerIdSuffix={pickerIdSuffix}
       >

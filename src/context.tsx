@@ -63,8 +63,9 @@ export default function PickerContextWrapper({
 
   // A pointer drag on any of the sliders/squares emits a rapid stream of
   // onChange calls. `startInteraction` (called from each control's pointer-down
-  // handler) fires `onDragStart` once at the gesture's start; a single window
-  // `pointerup` listener fires `onDragEnd` once at its end. Consumers can use
+  // handler) fires `onDragStart` once at the gesture's start; a window
+  // `pointerup` or `pointercancel` (a touch drag the browser turned into a
+  // scroll) fires `onDragEnd` once at its end. Consumers can use
   // this to defer expensive per-gesture side effects (e.g. URL/history writes)
   // until the drag completes.
   const interactingRef = useRef(false)
@@ -82,9 +83,11 @@ export default function PickerContextWrapper({
     }
 
     window.addEventListener('pointerup', handleUp)
+    window.addEventListener('pointercancel', handleUp)
 
     return () => {
       window.removeEventListener('pointerup', handleUp)
+      window.removeEventListener('pointercancel', handleUp)
     }
   }, [onDragStart, onDragEnd])
 

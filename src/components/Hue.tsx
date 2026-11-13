@@ -58,10 +58,12 @@ const Hue = () => {
     }
 
     window.addEventListener('pointerup', handleUp)
+    window.addEventListener('pointercancel', handleUp)
     window.addEventListener('pointermove', handleMove)
 
     return () => {
       window.removeEventListener('pointerup', handleUp)
+      window.removeEventListener('pointercancel', handleUp)
       window.removeEventListener('pointermove', handleMove)
     }
   }, [dragging])

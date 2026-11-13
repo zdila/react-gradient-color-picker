@@ -158,11 +158,13 @@ const GradientBar = () => {
 
   useEffect(() => {
     window.addEventListener('pointerup', handleUp)
+    window.addEventListener('pointercancel', handleUp)
     window.addEventListener('pointermove', handleMove)
     // window?.addEventListener('keydown', handleKeyboard)
 
     return () => {
       window.removeEventListener('pointerup', handleUp)
+      window.removeEventListener('pointercancel', handleUp)
       window.removeEventListener('pointermove', handleMove)
       // window?.removeEventListener('keydown', handleKeyboard)
     }
